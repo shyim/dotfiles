@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cp ~/.gitconfig_default ~/.gitconfig

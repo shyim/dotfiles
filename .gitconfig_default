@@ -1,0 +1,15 @@
+[user]
+        email = s.sayakci@shopware.com
+        name = Soner Sayakci
+        signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUY8rriTGw3ZcAtT6jJrsu5JAuUqi1WjFwOyWGoFZLA
+[core]
+        autocrlf = false
+        eol = lf
+[gpg]
+        format = ssh
+[commit]
+        gpgsign = true
+[tag]
+        gpgsign = true
+[pull]
+        rebase = true
