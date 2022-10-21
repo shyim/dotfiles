@@ -13,3 +13,6 @@
         gpgsign = true
 [pull]
         rebase = true
+
+[url "https://github"]
+  insteadOf = git://github
