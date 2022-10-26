@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-# cp ~/.dotfiles_gitcfg ~/.gitconfig
+curl -sS https://starship.rs/install.sh | sh -s --
+
+cp ~/.dotfiles/.gitconfig ~/.gitconfig
+cp ~/.dotfiles/.wakatime.cfg ~/.wakatime.cfg
+cp ~/.dotfiles/.bashrc.d/* ~/.bashrc.d/
