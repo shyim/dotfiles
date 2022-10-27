@@ -18,7 +18,7 @@ rm nvim-linux64.deb
 
 sudo apt install -y ripgrep fd-find
 
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
+nohup bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y &
 
 
 # Has to be as last because it's fucks any git clone
