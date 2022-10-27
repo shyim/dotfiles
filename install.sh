@@ -18,6 +18,9 @@ rm nvim-linux64.deb
 
 sudo apt install -y ripgrep fd-find
 
+# Ubuntu fd is weirdoo
+sudo ln -s /usr/bin/fdfind /usr/bin/fd
+
 nohup bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y &
 
 
