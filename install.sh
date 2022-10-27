@@ -21,7 +21,7 @@ sudo apt install -y ripgrep fd-find
 # Ubuntu fd is weirdoo
 sudo ln -s /usr/bin/fdfind /usr/bin/fd
 
-nohup bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y &
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
 
 
 # Has to be as last because it's fucks any git clone
