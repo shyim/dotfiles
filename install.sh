@@ -12,7 +12,7 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-if ! command -v fish &> /dev/null
+if command -v fish &> /dev/null
 then
     echo "Setting up Fish"
     # Setup a History forwarder to save fish config between runs
