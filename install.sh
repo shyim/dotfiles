@@ -12,7 +12,8 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-if [[ command -v fish ]]; then
+if ! command -v fish &> /dev/null
+then
     # Setup a History forwarder to save fish config between runs
     if [[ -d /workspace ]]; then
         touch /workspace/.fish_history
@@ -26,4 +27,4 @@ if [[ command -v fish ]]; then
     sudo chsh -s $(which fish) "$USER"
 fi
 
-nohup bash ~/.dotfiles/background.sh
+nohup bash ~/.dotfiles/background.sh &
