@@ -6,13 +6,13 @@ mkdir -p ~/.ssh && sudo rm -f ~/.ssh/known_hosts
 ssh-keyscan github.com > ~/.ssh/known_hosts
 
 if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
-    sudo apt purge -y neovim* fish*
-
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
     nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd nixpkgs.fzf nixpkgs.fish
 
     sudo chsh -s "$HOME/.nix-profile/bin/fish" "$USER"
+
+    sudo apt purge -y neovim* fish*
 
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
     fish -c 'fisher install PatrickF1/fzf.fish'
