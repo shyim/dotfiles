@@ -2,18 +2,13 @@
 
 # Contains all stuff which happens in background
 
-mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
-ssh-keyscan github.com >> ~/.ssh/known_hosts
+mkdir -p ~/.ssh && sudo rm -f ~/.ssh/known_hosts
+ssh-keyscan github.com > ~/.ssh/known_hosts
 
-sudo apt purge -y neovim*
+sudo apt purge -y neovim* fish*
 
-wget https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb
-sudo dpkg -i nvim-linux64.deb
-rm nvim-linux64.deb
+nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd nixpkgs.fzf nixpkgs.fish
 
-sudo apt install -y ripgrep fd-find
-
-# Ubuntu fd is weirdoo
-sudo ln -s /usr/bin/fdfind /usr/bin/fd
+sudo chsh -s "$HOME/.nix-profile/bin/fish" "$USER"
 
 bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
