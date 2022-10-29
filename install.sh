@@ -17,12 +17,7 @@ then
     echo "Setting up Fish"
     # Setup a History forwarder to save fish config between runs
     if [[ -d /workspace ]]; then
-        touch /workspace/.fish_history
-        rm /.local/share/fish/fish_history
-        
-        rm -f "$HOME/.local/share/fish/fish_history"
-        
-        ln -s "$HOME/.local/share/fish/fish_history" /workspace/.fish_history
+        rm -f "$HOME/.local/share/fish/fish_history" /workspace/.fish_history && ln -s "$HOME/.local/share/fish/fish_history" /workspace/.fish_history
         
         echo "Configured history forwarder"
     fi
