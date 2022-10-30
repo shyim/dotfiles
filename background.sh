@@ -12,8 +12,6 @@ if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
 
     sudo chsh -s "$HOME/.nix-profile/bin/fish" "$USER"
 
-    sudo apt purge -y neovim* fish*
-
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
     fish -c 'fisher install PatrickF1/fzf.fish'
 
