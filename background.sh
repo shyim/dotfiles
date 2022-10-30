@@ -27,5 +27,6 @@ sudo cp "$HOME/.nix-profile/bin/fish" /usr/bin/fish
 if [[ ! -z "$TAILSCALE_TOKEN" ]]; then
     nix-env -iA nixpkgs.tailscale
 
-    sudo tailscale up --auth-key "$TAILSCALE_TOKEN" --operator=$USER
+    sudo $HOME/.nix-profile/bin/tailscaled &
+    sudo $HOME/.nix-profile/bin/tailscale up --auth-key "$TAILSCALE_TOKEN" --operator=$USER
 fi
