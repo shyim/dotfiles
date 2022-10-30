@@ -17,7 +17,7 @@ if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
     fish -c 'curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher'
     fish -c 'fisher install PatrickF1/fzf.fish'
 
-    rm -f "$HOME/.local/share/fish/fish_history" && rm -f /workspace/.fish_history && ln -s "$HOME/.local/share/fish/fish_history" /workspace/.fish_history && touch /workspace/.fish_history
+    rm -f "$HOME/.local/share/fish/fish_history" && ln -s /workspace/.fish_history "$HOME/.local/share/fish/fish_history"
     sudo cp "$HOME/.nix-profile/bin/fish" /usr/bin/fish
 
     bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
