@@ -24,4 +24,8 @@ fish -c 'fisher install PatrickF1/fzf.fish'
 rm -f "$HOME/.local/share/fish/fish_history" && ln -s /workspace/.fish_history "$HOME/.local/share/fish/fish_history"
 sudo cp "$HOME/.nix-profile/bin/fish" /usr/bin/fish
 
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
+if [[ ! -z "$TAILSCALE_TOKEN" ]]; then
+    nix-env -iA nixpkgs.tailscale
+
+    sudo tailscale up --auth-key "$TAILSCALE_TOKEN" --operator=$USER
+fi
