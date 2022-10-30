@@ -8,7 +8,7 @@ ssh-keyscan github.com > ~/.ssh/known_hosts
 if [[ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]]; then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-    nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd nixpkgs.fzf nixpkgs.fish
+    nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd nixpkgs.fzf nixpkgs.fish nixpkgs.starship
 
     sudo chsh -s "$HOME/.nix-profile/bin/fish" "$USER"
 
