@@ -30,7 +30,6 @@ fi
 
 if command -v python3 &> /dev/null
 then
-    mkdir -p ~/.hishtory || true
     mkdir -p "${workspace_dir}/.hishtory" || true
     ln -s "${workspace_dir}/.hishtory" "$HOME/.hishtory"
 
