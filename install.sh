@@ -3,12 +3,20 @@
 dotfiles_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 workspace_dir="/workspaces"
 
+if [[ ! -d ~/.bashrc.d/ ]]; then
+    mkdir -p ~/.bashrc.d/
+    echo 'for i in $(ls -A $HOME/.bashrc.d/); do source $HOME/.bashrc.d/$i; done' >> "$HOME/.bashrc"
+fi
+
+if [[ ! -d ~/.config/ ]]; then
+    mkdir -p ~/.config/
+fi
+
+curl -sS https://starship.rs/install.sh | sh -s -- -f
 
 cp $dotfiles_dir/.wakatime.cfg ~/.wakatime.cfg
 cp $dotfiles_dir/.bashrc.d/* ~/.bashrc.d/
 cp -r $dotfiles_dir/.config/* ~/.config/
-
-
 
 if [[ "$USER" == "gitpod" ]]; then
     workspace_dir="/workspace"
@@ -20,21 +28,13 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-if command -v fish &> /dev/null
+if command -v python3 &> /dev/null
 then
-    echo "Setting up Fish"
+    mkdir -p ~/.hishtory || true
+    mkdir -p "${workspace_dir}/.hishtory" || true
+    ln -s "${workspace_dir}/.hishtory" "$HOME/.hishtory"
 
-    touch "${workspace_dir}/.fish_history"
-
-    # Setup a History forwarder to save fish config between runs
-    if [[ -d /workspace ]]; then
-        mkdir -p "$HOME/.local/share/fish"
-        rm -f "$HOME/.local/share/fish/fish_history" && ln -s "${workspace_dir}/.fish_history" "$HOME/.local/share/fish/fish_history"
-        
-        echo "Configured history forwarder"
-    fi
-
-    sudo chsh -s $(which fish) "$USER"
+    curl https://hishtory.dev/install.py | python3 -
 fi
 
 export dotfiles_dir
