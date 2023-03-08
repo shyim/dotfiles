@@ -12,6 +12,8 @@ fi
 . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
 nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd nixpkgs.fzf
+nix profile install --accept-flake-config github:cachix/devenv/latest
+
 
 if [[ ! -z "$TAILSCALE_TOKEN" ]]; then
     nix-env -iA nixpkgs.tailscale
