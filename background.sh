@@ -11,13 +11,9 @@ fi
 
 . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd nixpkgs.fzf
-nix profile install --accept-flake-config github:cachix/devenv/latest
+nix-env -iA nixpkgs.neovim nixpkgs.ripgrep nixpkgs.fd
 
-
-if [[ ! -z "$TAILSCALE_TOKEN" ]]; then
-    nix-env -iA nixpkgs.tailscale
-
-    sudo $HOME/.nix-profile/bin/tailscaled &
-    sudo $HOME/.nix-profile/bin/tailscale up --auth-key "$TAILSCALE_TOKEN" --operator=$USER
+if [[ ! -z "$TAILSCALE_TOKEN" && -f /usr/sbin/tailscaled ]]; then
+    sudo /usr/sbin/tailscaled &
+    sudo /usr/bin/tailscale up --auth-key "$TAILSCALE_TOKEN" --operator=$USER
 fi
