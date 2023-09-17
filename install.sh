@@ -28,7 +28,7 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-if [[ ! which atuin ]]; then
+if ! which atuin; then
     bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
 fi
 
