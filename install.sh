@@ -32,6 +32,10 @@ if ! which atuin; then
     bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
 fi
 
+if ! which bun; then
+    curl -fsSL https://bun.sh/install | bash
+fi
+
 if [[ ! -z "$ATUIN_USERNAME" ]]; then
     atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
     atuin sync
