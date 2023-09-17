@@ -28,13 +28,18 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-if command -v python3 &> /dev/null
-then
-    mkdir -p "${workspace_dir}/.hishtory" || true
-    ln -s "${workspace_dir}/.hishtory" "$HOME/.hishtory"
+autin_binary=$(which atuin)
 
-    curl https://hishtory.dev/install.py | python3 -
+if [[ ! -z "$autin_binary" ]]; then
+    bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
 fi
+
+
+if [[ ! -z "$ATUIN_USERNAME" ]]; then
+    atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
+    atuin sync
+fi
+
 
 export dotfiles_dir
 export workspace_dir
