@@ -28,12 +28,9 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-autin_binary=$(which atuin)
-
-if [[ ! -z "$autin_binary" ]]; then
+if [[ ! which atuin ]]; then
     bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
 fi
-
 
 if [[ ! -z "$ATUIN_USERNAME" ]]; then
     atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
@@ -42,7 +39,6 @@ if [[ ! -z "$ATUIN_USERNAME" ]]; then
     touch ~/.config/atuin/config.toml
     echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
-
 
 export dotfiles_dir
 export workspace_dir
