@@ -29,7 +29,7 @@ if [[ "$USER" == "gitpod" ]]; then
 fi
 
 if ! which atuin; then
-    bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
+    #bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
 fi
 
 if ! which bun; then
@@ -37,9 +37,9 @@ if ! which bun; then
 fi
 
 if [[ ! -z "$ATUIN_USERNAME" ]]; then
-    atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
-    atuin sync
+    #atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
+    #atuin sync
 
-    touch ~/.config/atuin/config.toml
-    echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
+    #touch ~/.config/atuin/config.toml
+    #echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
