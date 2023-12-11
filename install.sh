@@ -43,8 +43,3 @@ if [[ ! -z "$ATUIN_USERNAME" ]]; then
     touch ~/.config/atuin/config.toml
     echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
-
-export dotfiles_dir
-export workspace_dir
-
-nohup bash "$dotfiles_dir/background.sh" &
