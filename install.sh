@@ -28,18 +28,13 @@ if [[ "$USER" == "gitpod" ]]; then
     echo "    helper = /usr/bin/gp credential-helper" >> ~/.gitconfig
 fi
 
-if ! which atuin; then
-    #bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
+if which apt; then
+    sudo apt update
+    # missing in codespaces
+    sudo apt install -y bash-completion
 fi
+
 
 if ! which bun; then
     curl -fsSL https://bun.sh/install | bash
-fi
-
-if [[ ! -z "$ATUIN_USERNAME" ]]; then
-    #atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
-    #atuin sync
-
-    #touch ~/.config/atuin/config.toml
-    #echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
