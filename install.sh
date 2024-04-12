@@ -38,8 +38,3 @@ if which apt; then
     # missing in codespaces
     sudo apt install -y bash-completion
 fi
-
-
-if ! which bun; then
-    curl -fsSL https://bun.sh/install | bash
-fi
