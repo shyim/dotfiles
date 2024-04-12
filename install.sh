@@ -12,6 +12,14 @@ if [[ ! -d ~/.config/ ]]; then
     mkdir -p ~/.config/
 fi
 
+if [[ ! -z "$ATUIN_USERNAME" ]]; then
+    atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
+    atuin sync
+
+    touch ~/.config/atuin/config.toml
+    echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
+fi
+
 curl -sS https://starship.rs/install.sh | sh -s -- -f
 
 cp $dotfiles_dir/.wakatime.cfg ~/.wakatime.cfg
