@@ -3,6 +3,15 @@
 dotfiles_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 workspace_dir="/workspaces"
 
+if [[ ! -z "$ATUIN_USERNAME" ]]; then
+    bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
+    atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
+    atuin sync --force
+
+    touch ~/.config/atuin/config.toml
+    echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
+fi
+
 if [[ ! -d ~/.bashrc.d/ ]]; then
     mkdir -p ~/.bashrc.d/
     echo 'for i in $(ls -A $HOME/.bashrc.d/); do source $HOME/.bashrc.d/$i; done' >> "$HOME/.bashrc"
@@ -10,15 +19,6 @@ fi
 
 if [[ ! -d ~/.config/ ]]; then
     mkdir -p ~/.config/
-fi
-
-if [[ ! -z "$ATUIN_USERNAME" ]]; then
-    bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
-    atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
-    atuin sync
-
-    touch ~/.config/atuin/config.toml
-    echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
 
 curl -sS https://starship.rs/install.sh | sh -s -- -f
