@@ -12,11 +12,6 @@ if [[ ! -z "$ATUIN_USERNAME" ]]; then
     echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
 
-if [[ ! -d ~/.bashrc.d/ ]]; then
-    mkdir -p ~/.bashrc.d/
-    echo 'for i in $(ls -A $HOME/.bashrc.d/); do source $HOME/.bashrc.d/$i; done' >> "$HOME/.bashrc"
-fi
-
 if [[ ! -d ~/.config/ ]]; then
     mkdir -p ~/.config/
 fi
@@ -24,6 +19,7 @@ fi
 curl -sS https://starship.rs/install.sh | sh -s -- -f
 
 cp $dotfiles_dir/.wakatime.cfg ~/.wakatime.cfg
+cp $dotfiles_dir/.bashrc ~/.bashrc
 cp $dotfiles_dir/.bashrc.d/* ~/.bashrc.d/
 cp -r $dotfiles_dir/.config/* ~/.config/
 
