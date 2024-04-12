@@ -7,9 +7,6 @@ if [[ ! -z "$ATUIN_USERNAME" ]]; then
     bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
     atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
     atuin sync --force
-
-    touch ~/.config/atuin/config.toml
-    echo "sync_frequency = \"1m\"" >> ~/.config/atuin/config.toml
 fi
 
 if [[ ! -d ~/.config/ ]]; then
