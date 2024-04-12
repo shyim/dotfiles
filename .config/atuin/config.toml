@@ -1,1 +1,3 @@
+auto_sync = true
 sync_frequency = "1m"
+workspaces = true
