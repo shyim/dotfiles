@@ -13,6 +13,7 @@ if [[ ! -d ~/.config/ ]]; then
 fi
 
 if [[ ! -z "$ATUIN_USERNAME" ]]; then
+    bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
     atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
     atuin sync
 
