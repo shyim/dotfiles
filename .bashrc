@@ -79,4 +79,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-PS1='\[^[[01;32m\]\u\[^[[00m\] \[^[[01;34m\]\w\[^[[00m\]$(__git_ps1 " (%s)") $ '
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+eval "$(starship init bash)"
