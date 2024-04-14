@@ -3,8 +3,23 @@
 dotfiles_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 workspace_dir="/workspaces"
 
+if ! which atuin; then
+    tmpDir=$(mktemp -d)
+
+    curl -q -L https://github.com/atuinsh/atuin/releases/download/v18.1.0/atuin-v18.1.0-$(uname -m)-unknown-linux-gnu.tar.gz -o "$tmpDir/atuin.tar.gz"
+    curl https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh -o ~/.bash-preexec.sh
+    tar xf "$tmpDir/atuin.tar.gz" --strip=1 -C $tmpDir
+    
+    if [[ ! -d /usr/local/bin ]]; then
+      sudo mkdir -p /usr/local/bin
+    fi
+    
+    sudo mv "$tmpDir/atuin" /usr/local/bin/atuin
+    
+    rm -rf $tmpDir
+fi
+
 if [[ ! -z "$ATUIN_USERNAME" ]]; then
-    bash <(curl https://raw.githubusercontent.com/ellie/atuin/main/install.sh)
     atuin login -u "$ATUIN_USERNAME" -p "$ATUIN_PASSWORD" --key "$ATUIN_KEY"
     atuin sync --force
 fi
@@ -14,14 +29,18 @@ if [[ ! -d ~/.config/ ]]; then
 fi
 
 if ! which starship; then
-    curl -L https://github.com/starship/starship/releases/latest/download/starship-$(uname -m)-unknown-linux-gnu.tar.gz -o /tmp/starship.tar.gz
-    tar xvf /tmp/starship.tar.gz -C /tmp
+    tmpDir=$(mktemp -d)
+
+    curl -q -L https://github.com/starship/starship/releases/latest/download/starship-$(uname -m)-unknown-linux-gnu.tar.gz -o "$tmpDir/starship.tar.gz"
+    tar xf "$tmpDir/starship.tar.gz" -C "$tmpDir"
     
     if [[ ! -d /usr/local/bin ]]; then
-      sudo mkdir -p /usr/local/bin
+        sudo mkdir -p /usr/local/bin
     fi
     
-    sudo mv /tmp/starship /usr/local/bin/starship
+    sudo mv "$tmpDir/starship" /usr/local/bin/starship
+    
+    rm -rf $tmpDir
 fi
 
 cp $dotfiles_dir/.wakatime.cfg ~/.wakatime.cfg
