@@ -24,8 +24,6 @@ if ! which starship; then
     sudo mv /tmp/starship /usr/local/bin/starship
 fi
 
-curl -sS https://starship.rs/install.sh | sh -s -- -f
-
 cp $dotfiles_dir/.wakatime.cfg ~/.wakatime.cfg
 cp $dotfiles_dir/.bashrc ~/.bashrc
 cp $dotfiles_dir/.bashrc.d/* ~/.bashrc.d/
