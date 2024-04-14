@@ -13,6 +13,17 @@ if [[ ! -d ~/.config/ ]]; then
     mkdir -p ~/.config/
 fi
 
+if ! which starship; then
+    curl -L https://github.com/starship/starship/releases/latest/download/starship-$(uname -m)-unknown-linux-gnu.tar.gz -o /tmp/starship.tar.gz
+    tar xvf /tmp/starship.tar.gz -C /tmp
+    
+    if [[ ! -d /usr/local/bin ]]; then
+      sudo mkdir -p /usr/local/bin
+    fi
+    
+    sudo mv /tmp/starship /usr/local/bin/starship
+fi
+
 curl -sS https://starship.rs/install.sh | sh -s -- -f
 
 cp $dotfiles_dir/.wakatime.cfg ~/.wakatime.cfg
