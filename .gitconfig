@@ -1,15 +1,25 @@
 [user]
-        email = s.sayakci@gmail.com
-        name = Soner Sayakci
-        signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUY8rriTGw3ZcAtT6jJrsu5JAuUqi1WjFwOyWGoFZLA
+    email = s.sayakci@gmail.com
+    name = Soner Sayakci
+    signingKey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJUY8rriTGw3ZcAtT6jJrsu5JAuUqi1WjFwOyWGoFZLA
 [core]
-        autocrlf = false
-        eol = lf
+    autocrlf = false
+    eol = lf
 [gpg]
-        format = ssh
+    format = ssh
 [commit]
-        gpgsign = true
+    gpgsign = true
 [tag]
-        gpgsign = true
+    gpgsign = true
 [pull]
-        rebase = true
+    rebase = true
+[push]
+	default = current
+	autoSetupRemote = true
+[rebase]
+    autoStash = true
+    autosquash = true
+[init]
+	defaultBranch = main
+[url "https://github"]
+	insteadOf = git://github
